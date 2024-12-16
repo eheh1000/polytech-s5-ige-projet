@@ -133,5 +133,13 @@ void calculAtteignableCavalier(Piece* self, Case Plateau[8][8]){
 }
 
 void calculAtteignableFou(Piece* self, Case Plateau[8][8]){
-    
+    int xPiece = self->x;
+    int yPiece = self->y;
+
+    // fou diagonale haut-droit (PDV blancs)
+    while(CaseExiste(xPiece + 1, yPiece + 1) && Plateau[xPiece+1][yPiece+1].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece+1][yPiece+1], self->casesAtteignables);
+        xPiece++;
+        yPiece++;
+    }
 }
