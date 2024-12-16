@@ -3,7 +3,12 @@
 #include ".././headers/echiquier.h"
 #include ".././headers/piece.h"
 
-
+bool CaseExiste(int x,int y){
+    if(x<=8 && x>=1 && y<=8 && y>=1){
+        return true;
+    }
+    return false;
+}
 
 void calculAtteignablePion(Piece* self, Case Plateau[8][8]){
     int xPiece = self->x;
@@ -96,4 +101,37 @@ void calculAtteignableTour(Piece* self, Case Plateau[8][8]){
     }
     int yPiece = self->y;
 
+}
+
+void calculAtteignableCavalier(Piece* self, Case Plateau[8][8]){
+    int xPiece = self->x;
+    int yPiece = self->y;
+    if(CaseExiste(xPiece+2,yPiece+1) && Plateau[xPiece+2][yPiece+1].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece+2][yPiece+1], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece+2,yPiece-1) && Plateau[xPiece+2][yPiece-1].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece+2][yPiece-1], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece+1,yPiece+2) && Plateau[xPiece+1][yPiece+2].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece+1][yPiece+2], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece+1,yPiece-2) && Plateau[xPiece+1][yPiece-2].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece+1][yPiece-2], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece-1,yPiece-2) && Plateau[xPiece-1][yPiece-2].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece-1][yPiece-2], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece-1,yPiece+2) && Plateau[xPiece-1][yPiece+2].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece-1][yPiece+2], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece-2,yPiece-1) && Plateau[xPiece-2][yPiece-1].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece-2][yPiece-1], self->casesAtteignables);
+    }
+    if(CaseExiste(xPiece-2,yPiece+1) && Plateau[xPiece-2][yPiece+1].piece == NULL){
+        insertionListeCaseAtteignables(&Plateau[xPiece-2][yPiece+1], self->casesAtteignables);
+    }
+}
+
+void calculAtteignableFou(Piece* self, Case Plateau[8][8]){
+    
 }
